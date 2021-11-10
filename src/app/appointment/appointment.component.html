@@ -1,0 +1,34 @@
+<div class="container">
+    <h1>Appointments</h1>
+    <mat-grid-list cols="4" rows="2" rowHeight="225px">
+        <mat-grid-tile colspan="1" rowspan="2">
+            <div class="calendar">
+                <mat-calendar (selectedChange)="dateChange($event)" [selected]="selected"></mat-calendar>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile class="slots" colspan=3 rowspan="1">
+            <mat-grid-tile-header>
+                <h1>Morning slots</h1>
+                <span class="spacer"></span>
+                <button mat-raised-button (click)="openDialog('Morning')" class="slot-button"><mat-icon>add</mat-icon>Add Slots</button>
+            </mat-grid-tile-header>
+            <div class="grid-content">
+                <mat-chip-list>
+                    <mat-chip color="primary" selected *ngFor= "let slot of morningSlot">{{slot}}</mat-chip>
+                </mat-chip-list>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile class="slots" colspan=3 rowspan="1">
+            <mat-grid-tile-header>
+                <h1>Evening slots</h1>
+                <span class="spacer"></span>
+                <button mat-raised-button (click)="openDialog('Evening')"><mat-icon>add</mat-icon>Add Slots</button>
+            </mat-grid-tile-header>
+            <div class="grid-content">
+                <mat-chip-list>
+                    <mat-chip color="primary" selected *ngFor="let slot of eveningSlot">{{slot}}</mat-chip>
+                </mat-chip-list>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>    
+</div>

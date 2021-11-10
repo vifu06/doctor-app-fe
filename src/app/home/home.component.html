@@ -1,0 +1,158 @@
+<div class="container">
+    <div class="row">
+        <h1>Home</h1>
+        <span class="spacer"></span>
+        <mat-form-field appearance="legacy">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" readonly [formControl]="pickeddate" (dateChange)="dateModified()">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <mat-tab-group mat-align-tabs="start">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Queue 
+                <mat-icon class="m-l-5" matBadge="{{queue.length}}" matBadgeColor="primary">access_time</mat-icon>
+            </ng-template>
+            <div class="table-container">
+            <table mat-table [dataSource]="queue" class="mat-elevation-z8">
+                <ng-container matColumnDef="patientName">
+                    <th mat-header-cell *matHeaderCellDef > Patient </th>
+                    <td mat-cell *matCellDef="let element; let i = index">
+                        <div class="row">
+                            <span fab-span>{{i + 1}}</span>
+                            <!-- <img src="https://material.angular.io/assets/img/examples/shiba1.jpg" class="avatar"> -->
+                            <div>
+                                <span class="patient">{{element.patientName}}</span>
+                                <div class="sub-detail">{{element.patientGender}}, {{element.patientAge}} yr</div>
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="patientContact">
+                    <th mat-header-cell *matHeaderCellDef > Contact </th>
+                    <td mat-cell *matCellDef="let element"> {{element.patientContact}} </td>
+                </ng-container>
+                <ng-container matColumnDef="slot">
+                    <th mat-header-cell *matHeaderCellDef > Appointment </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <mat-chip-list>
+                            <mat-chip color="primary" selected>{{element.slot}}</mat-chip>
+                        </mat-chip-list>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef > Status </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <mat-chip-list>
+                            <mat-chip color="accent" selected>{{element.status}}</mat-chip>
+                        </mat-chip-list>
+                     </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="5" align="center">No Appointments</td>
+                </tr>
+            </table>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Attended
+                <mat-icon class="m-l-5" matBadge="{{attended.length}}" matBadgeColor="accent">check</mat-icon>
+            </ng-template>
+            <div class="table-container">
+                <table mat-table [dataSource]="attended" class="mat-elevation-z8">
+                    <ng-container matColumnDef="patientName">
+                        <th mat-header-cell *matHeaderCellDef > Patient </th>
+                        <td mat-cell *matCellDef="let element; let i = index">
+                            <div class="row">
+                                <span fab-span>{{i + 1}}</span>
+                                <!-- <img src="https://material.angular.io/assets/img/examples/shiba1.jpg" class="avatar"> -->
+                                <div>
+                                    <span class="patient">{{element.patientName}}</span>
+                                    <div class="sub-detail">{{element.patientGender}}, {{element.patientAge}} yr</div>
+                                </div>
+                            </div>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="patientContact">
+                        <th mat-header-cell *matHeaderCellDef > Contact </th>
+                        <td mat-cell *matCellDef="let element"> {{element.patientContact}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="slot">
+                        <th mat-header-cell *matHeaderCellDef > Appointment </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-chip-list>
+                                <mat-chip color="primary" selected>{{element.slot}}</mat-chip>
+                            </mat-chip-list>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef > Status </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-chip-list>
+                                <mat-chip color="accent">{{element.status}}</mat-chip>
+                            </mat-chip-list>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="5" align="center">No Appointments</td>
+                    </tr>
+                </table>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                No Show
+                <mat-icon class="m-l-5" matBadge="{{noShow.length}}" matBadgeColor="warn">close</mat-icon>
+            </ng-template>
+            <div class="table-container">
+                <table mat-table [dataSource]="noShow" class="mat-elevation-z8">
+                    <ng-container matColumnDef="patientName">
+                        <th mat-header-cell *matHeaderCellDef > Patient </th>
+                        <td mat-cell *matCellDef="let element; let i = index">
+                            <div class="row">
+                                <span fab-span>{{i + 1}}</span>
+                                <!-- <img src="https://material.angular.io/assets/img/examples/shiba1.jpg" class="avatar"> -->
+                                <div>
+                                    <span class="patient">{{element.patientName}}</span>
+                                    <div class="sub-detail">{{element.patientGender}}, {{element.patientAge}} yr</div>
+                                </div>
+                            </div>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="patientContact">
+                        <th mat-header-cell *matHeaderCellDef > Contact </th>
+                        <td mat-cell *matCellDef="let element"> {{element.patientContact}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="slot">
+                        <th mat-header-cell *matHeaderCellDef > Appointment </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-chip-list>
+                                <mat-chip color="primary" selected>{{element.slot}}</mat-chip>
+                            </mat-chip-list>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef > Status </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-chip-list>
+                                <mat-chip color="warn" selected>{{element.status}}</mat-chip>
+                            </mat-chip-list>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="5" align="center">No Appointments</td>
+                    </tr>
+                </table>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
