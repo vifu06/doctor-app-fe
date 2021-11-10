@@ -1,0 +1,56 @@
+.container {
+  margin: 3%;
+  padding: 10px;
+}
+
+.calendar {
+  border: 1px solid lightgrey;
+  margin-top: -50px;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.slots {
+  margin: 10px;
+  border-radius: 15px;
+}
+
+.slotButton {
+  float: right;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-raised-button {
+  border-radius: 20px;
+  padding: 5px;
+  margin-left: 15px;
+  color: blue;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.d-flex {
+  display: flex;
+}
+.mat-grid-tile-content {
+  justify-content: left;
+}
+.mat-card {
+  width: 100%;
+}
+
+.grid-content {
+  width: 100%;
+  margin: 10px;
+  margin-top: -40px;
+}
+
+.slot-button {
+  padding: 1px;
+}

@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Create Slot</h2>
+<mat-dialog-content class="mat-typography">
+<form [formGroup]="slotForm">
+    <mat-form-field appearance="legacy">
+        <mat-label>Slot type</mat-label>
+        <input matInput readonly formControlName="type">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" class="m-10">
+        <mat-label>Date</mat-label>
+        <input matInput readonly formControlName="date">
+    </mat-form-field>
+    <mat-form-field appearance="legacy" class="m-10">
+        <mat-label>Time</mat-label>
+        <mat-select formControlName="time">
+            <mat-option *ngFor="let opt of slotTimes" value="{{opt}}">{{opt}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button cdkFocusInitial (click)="onCreate()">Create</button>
+</mat-dialog-actions>
